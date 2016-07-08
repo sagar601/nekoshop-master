@@ -1,0 +1,17 @@
+= render_component Components::Checkout::Steps.new active: 1
+
+.ui.stackable.grid
+  .nine.wide.column
+    = render_component Components::Checkout::AddressForm.new address: @result.address, rememberable: !@result.checkout.guest?
+
+  .six.wide.right.floated.column
+    - if @result.checkout.guest?
+      = render_component Components::Checkout::AccountPrompts.new return_url: edit_checkout_address_url
+
+  .sixteen.wide.right.aligned.column
+    button.ui.teal.button#next_checkout_step form='edit_address'
+      = t '.continue'
+      i.chevron.right.icon
+
+- content_for :sidebar
+  = render_component Components::Checkout::Summary.new checkout: @result.checkout

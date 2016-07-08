@@ -1,0 +1,60 @@
+app:
+  build: .
+  dockerfile: docker/Dockerfile-app
+  links:
+    - db
+    - redis
+  volumes:
+    - .:/app
+  env_file: docker/vars/app.env
+
+db:
+  build: .
+  dockerfile: docker/Dockerfile-db
+  volumes_from:
+    - dbdata
+  env_file:
+    - docker/vars/db.env
+    - docker/vars/aws.env
+
+dbdata:
+  image: debian:jessie
+  volumes:
+    - /var/lib/postgresql/data
+    - /backups
+
+web:
+  build: .
+  dockerfile: docker/Dockerfile-web
+  ports:
+    - 80:80
+    - 443:443
+  links:
+    - app
+  volumes_from:
+    - app
+
+
+worker:
+  build: .
+  dockerfile: docker/Dockerfile-app
+  command: ["bundle", "exec", "sidekiq", "-q", "default", "-q", "mailers"]
+  links:
+    - db
+    - redis
+  volumes:
+    - .:/app
+  env_file: docker/vars/app.env
+
+redis:
+  build: .
+  dockerfile: docker/Dockerfile-redis
+  volumes_from:
+    - redisdata
+  env_file: docker/vars/aws.env
+
+redisdata:
+  image: debian:wheezy
+  volumes:
+    - /data
+    - /backups

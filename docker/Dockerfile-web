@@ -1,0 +1,16 @@
+FROM nginx:1.9
+
+RUN mkdir /ssl
+RUN openssl req \
+            -x509 \
+            -nodes \
+            -days 365 \
+            -newkey rsa:2048 \
+            -subj "/C=US/ST=Denial/L=Springfield/O=Dis/CN=dockervm.dev" \
+            -keyout /ssl/nginx.key \
+            -out /ssl/nginx.crt \
+            2>&1 > /dev/null
+
+COPY docker/ssl/* /ssl/
+
+COPY docker/configs/nginx.conf /etc/nginx/nginx.conf

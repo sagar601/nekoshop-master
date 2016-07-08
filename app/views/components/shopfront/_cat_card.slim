@@ -1,0 +1,21 @@
+- cat = component.cat
+- cat_path = component.cat_path
+
+.Shopfront-CatCard
+  .ui.card
+    a.image href=cat_path
+      img src=cat.headshot.src
+
+    .content
+      a.header href=cat_path
+        = cat.name
+      .meta: em = cat.species
+
+    .extra.content
+      .ui.two.buttons
+        a.ui.basic.teal.button.Shopfront-CatCard_details-button href=cat_path
+          i.eye.icon
+          = t '.details'
+        a.button.ui.teal.button.Shopfront-CatCard_cart-button href=cat_path
+          i.cart.icon
+          = component.price

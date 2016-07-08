@@ -1,0 +1,22 @@
+.Shopfront-CatPage-CatSheet
+  .ui.stackable.grid
+    .row
+
+      .ten.wide.column
+        .ui.segment
+          img.ui.centered.image (src=component.cat.headshot.src data-photo-roll-screen)
+
+      .six.wide.column
+        .ui.segment
+          h1.ui.header
+            = component.cat.name
+            .sub.header: em = component.cat.species
+
+          p = component.cat.summary
+
+          = render_component ::Components::Shopfront::CatPage::AddToCartForm.new cat: component.cat
+
+    .sixteen.wide.column
+      .ui.segment
+        .ui.grey.sub.header = t '.description'
+        div = component.cat_description

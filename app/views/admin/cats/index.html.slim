@@ -1,0 +1,4 @@
+= render_component Components::Admin::Cats::CatTable.new cats: @result.cats
+
+- content_for :sidebar
+  = render_component Components::Admin::SidebarNav.new context: self, active: :cats

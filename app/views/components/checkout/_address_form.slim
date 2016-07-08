@@ -1,0 +1,40 @@
+= form_for component.address, as: 'address', url: checkout_address_path, html: { class: 'ui fluid form' } do |f|
+
+  - if component.address.errors.any?
+      .ui.negative.message: ul
+        - component.address.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+
+  .field
+    = f.label :address
+    = f.text_field :line1, placeholder: 'address line 1'
+  .field
+    = f.text_field :line2, placeholder: 'address line 2'
+
+  .fields
+    .six.wide.field
+      = f.label :postal_code
+      = f.text_field :postal_code
+
+    .ten.wide.field
+      = f.label :city
+      = f.text_field :city
+
+  .fields
+    .eight.wide.field
+      = f.label :country
+      = country_select 'address', 'country', {}, { class: 'ui dropdown' }
+
+    .eight.wide.field
+      = f.label :phone
+      = f.text_field :phone
+
+  - if component.rememberable
+    .field
+      .ui.checkbox
+        = check_box_tag :remember_address, true, true
+        label = t '.remember_this_address'

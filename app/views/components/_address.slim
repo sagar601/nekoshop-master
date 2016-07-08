@@ -1,0 +1,18 @@
+div class=component.wrapper_classes
+  == component.title
+
+  - a = component.address
+
+  p
+    = a.name
+    br
+    = a.phone
+  p
+    = a.line1
+    - unless a.line2.blank?
+      br
+      = a.line2
+    br
+    = "#{a.postal_code} #{a.city}"
+    br
+    = a.country

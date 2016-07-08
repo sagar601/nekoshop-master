@@ -1,0 +1,52 @@
+- tab_id = -> index { "option_#{index}" }
+- active_tab_class = -> index { 'active' if index.zero? }
+
+
+h2.ui.header
+  | #{Option.model_name.human.pluralize}
+  .sub.header = t '.you_can_only_have_some_options', max_options: Cat::MAX_OPTIONS_PER_CAT
+
+.ui.top.attached.tabular.menu
+  - component.form.options.each_with_index do |option, i|
+    .item data-tab=tab_id[i] class=active_tab_class[i]
+      = "#{Option.model_name.human.pluralize} #{i+1}"
+
+= component.parent_form_builder.fields_for :options do |of|
+  .ui.bottom.attached.tab.segment data-tab=tab_id[of.index] class=active_tab_class[of.index]
+    .field
+      = of.label :name
+      = of.text_field :name
+
+    .field
+      = of.label :description
+      = of.text_field :description
+
+    h3.ui.header
+      | #{Variation.model_name.human.pluralize}
+
+    = of.add_nested_fields_link :variations do
+      button.ui.teal.button
+        = t '.add_variation'
+
+    = of.nested_fields_for :variations, wrapper_tag: :div do |vf|
+      .inline.fields
+        .five.wide.field
+          = vf.text_field :name, placeholder: Option.human_attribute_name(:name)
+
+        .seven.wide.field
+          = vf.fields_for :photo, vf.object.photo do |pf|
+            img.ui.mini.rounded.bordered.image src=pf.object.src
+
+            .field
+              .ui.checkbox
+                = pf.check_box :remove_image
+                label = t '.remove'
+
+            = pf.file_field :image
+
+        .three.wide.field
+          = vf.money :cost
+
+        .one.wide.right.aligned.field
+          = vf.remove_nested_fields_link do
+            i.circular.large.trash.grey.icon.link

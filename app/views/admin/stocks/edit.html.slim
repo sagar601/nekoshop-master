@@ -1,0 +1,9 @@
+h1.ui.header
+  img.ui.bordered.image src=@result.cat.headshot.src
+  | #{@result.cat.name} #{t '.stock'}
+
+= render_component Components::Admin::Stocks::StockForm.new form: @result.form, url: admin_stock_path(@result.cat), method: :patch, return_path: admin_stocks_path
+
+
+- content_for :sidebar
+  = render_component Components::Admin::SidebarNav.new context: self, active: :stocks

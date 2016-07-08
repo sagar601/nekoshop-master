@@ -1,0 +1,54 @@
+= form_for component.form, as: 'cat', url: component.action, method: component.method, html: { class: 'ui form' } do |f|
+
+  = component.errors
+
+  .required.field
+    = f.label :name
+    = f.text_field :name
+
+  .field
+    = f.label :species
+    = f.text_field :species
+
+  .field
+    = f.label :summary
+    = f.text_field :summary
+
+  .field
+    = f.label :description
+    = f.text_area :description
+
+  .inline.field
+    = f.label :price
+    = f.money :price
+
+
+  h2.ui.header = t '.photos'
+
+  .Admin-Cats-PhotosGrid
+    .ui.four.stackable.cards
+      = f.nested_fields_for :photos, wrapper_tag: :div, wrapper_options: { class: 'card' }, class_name: 'CatPhoto' do |pf|
+        .image
+          img src=pf.object.src
+
+        .content
+          .Admin-Cats-PhotosGrid_file-upload-input
+            = pf.file_field :image
+
+          = pf.remove_nested_fields_link t('.delete_photo'), class: 'ui basic fluid button'
+
+          .field
+            .ui.checkbox
+              = pf.check_box :headshot
+              = pf.label :headshot
+
+      .card
+        .content
+          = f.add_nested_fields_link :photos, t('.add_photo'), class: 'ui fluid button'
+
+
+  = render_component ::Components::Admin::Cats::CatForm::OptionsSubform.new form: component.form, parent: f
+
+
+  = f.submit class: 'ui teal button'
+  = link_to t('.cancel'), component.return_path, class: 'ui basic button'

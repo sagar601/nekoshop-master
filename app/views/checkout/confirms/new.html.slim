@@ -1,0 +1,17 @@
+= render_component Components::Checkout::Steps.new active: 3
+
+.ui.two.column.stackable.grid
+  .column
+    = render_component Components::Address.new address: @result.checkout.address, title: t('.shipping_address'), wrapper_classes: 'ui segment'
+
+  .column
+    = render_component Components::Checkout::PaymentMethod.new method: @result.checkout.payment_method, title: t('.payment_method')
+
+  .row
+    .right.floated.six.wide.column
+      = render_component Components::Checkout::SimpleCostBreakdown.new checkout: @result.checkout
+      .ui.divider
+      = button_to t('.finish_purchase'), checkout_confirm_path, method: :post, class: 'ui fluid teal button', id: 'confirm_checkout'
+
+- content_for :sidebar
+  = render_component Components::Checkout::Summary.new checkout: @result.checkout

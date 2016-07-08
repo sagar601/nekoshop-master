@@ -1,0 +1,12 @@
+= render_component Components::Cart::ItemsTable.new context: self, cart: @result.cart
+
+.ui.three.column.grid
+  .column
+    = link_to edit_cart_path, class: 'ui basic button Cart-ChangeQuantitiesButton' do
+      i.ui.pencil.icon
+      = t '.change_quantities'
+
+  .right.floated.column
+    = render_component Components::Checkout::Summary.new checkout: @result.checkout, wrapped: false, show_items: false
+    .ui.divider
+    = render_component Components::Checkout::StartCheckoutButton.new cart: @result.cart

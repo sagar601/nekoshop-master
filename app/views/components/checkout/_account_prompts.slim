@@ -1,0 +1,13 @@
+h2.ui.header
+  = t '.existing_user'
+  .sub.header = t '.sign_in_to_use_profile_address'
+
+= link_to new_user_session_path(return_to: component.return_url) do
+  button.ui.basic.button = t '.sign_in'
+
+h2.ui.header
+  = t '.new_user'
+  .sub.header = t '.sign_up_to_benefit'
+
+= link_to new_user_registration_path(return_to: component.return_url) do
+  button.ui.basic.button = t '.sign_up'

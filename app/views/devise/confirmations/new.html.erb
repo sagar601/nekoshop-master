@@ -1,0 +1,20 @@
+<h2 class="ui header">Resend confirmation instructions</h2>
+
+<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: 'ui form' }) do |f| %>
+  <% unless devise_error_messages!.to_s.empty? %>
+    <div class="ui negative message">
+      <%= devise_error_messages! %>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Resend confirmation instructions", class: 'ui teal button' %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>

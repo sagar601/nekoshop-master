@@ -1,0 +1,9 @@
+- if component.disabled?
+  button.ui.disabled.fluid.button.Checkout-StartCheckoutButton (disabled)
+    i.cart.icon
+    = t '.checkout'
+
+- else
+  = link_to checkout_path, method: :post, class: 'ui fluid teal button Checkout-StartCheckoutButton' do
+    i.cart.icon
+    = t '.checkout'

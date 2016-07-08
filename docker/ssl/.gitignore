@@ -1,0 +1,4 @@
+# put you SSL files in this directory and they get picked up by Nginx
+# however we definitely don't want them going in the repository
+*
+!.gitignore

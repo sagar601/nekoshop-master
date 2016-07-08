@@ -1,0 +1,7 @@
+.ui.simple.dropdown.item.Site-MenuBar-UserMenu
+  = component.user.name
+  i.dropdown.icon
+
+  .menu
+    - component.links.each do |link|
+      = link_to link.text, link.url, link.options

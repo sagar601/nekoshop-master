@@ -1,0 +1,13 @@
+FROM ruby:2.2
+
+RUN apt-get update -qq && apt-get install -yqq build-essential vim git libpq-dev postgresql-client && rm -rf /var/lib/apt/lists/*
+RUN wget -qO- https://deb.nodesource.com/setup_0.12 | bash - 2>&1 > /dev/null && apt-get -yqq install nodejs && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir /app
+WORKDIR /app
+
+COPY Gemfile* ./
+RUN bundle install
+
+EXPOSE 8080
+CMD ["bundle", "exec", "unicorn", "-c", "docker/configs/unicorn.rb"]

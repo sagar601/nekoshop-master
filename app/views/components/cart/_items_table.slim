@@ -1,0 +1,22 @@
+table.ui.table.Cart-ItemsTable
+  thead: tr
+    th.four.wide = t '.cat'
+    th.six.wide = t '.options'
+    th = t '.quantity'
+    th = t '.subtotal'
+    th = t '.remove'
+
+  tbody
+    - component.items.each do |item|
+      tr
+        td = item.name
+        td = item.options
+        td = item.quantity
+        td = item.subtotal
+        td = link_to t('.remove'), cart_item_path(item), :method => :delete, data: { confirm: item.remove_confirm_message }
+
+    - if component.items.empty?
+      tr
+        td.center.aligned colspan=5
+          .Cart-ItemsTable_empty-cart-message
+            == t '.no_items_in_cart_yet', shopfront_link: cats_path

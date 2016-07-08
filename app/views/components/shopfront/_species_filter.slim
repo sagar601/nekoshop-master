@@ -1,0 +1,5 @@
+.Shopfront-SpeciesFilter
+  .ui.vertical.menu
+    - component.species.each do |s|
+      a.item href=(s.href) class=(s.classes)
+        = s.name

@@ -1,0 +1,3 @@
+# put any sensitive secrets or environment dependant values in .env files
+# you can check the .template files for examples of variables you'll need
+*.env

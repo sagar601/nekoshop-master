@@ -1,0 +1,7 @@
+FROM redis:3.0
+
+RUN apt-get update -qq && apt-get install -yqq python-pip && rm -rf /var/lib/apt/lists/*
+
+RUN pip install awscli
+
+COPY docker/scripts/backup-redis.sh docker/scripts/restore-redis.sh /

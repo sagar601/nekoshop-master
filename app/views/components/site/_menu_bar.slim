@@ -1,0 +1,12 @@
+nav.ui.stackable.inverted.top.fixed.menu.Site-MenuBar
+  .ui.container
+    a.item href=root_path = t '.neko_shop'
+    .right.menu
+      = render_component ::Components::Site::MenuBar::CartCounter.new cart: component.user.customer.cart
+
+
+      - if component.user.registered?
+        = render_component ::Components::Site::MenuBar::UserMenu.new context: self, user: component.user
+      - else
+        a.item.Site-MenuBar_sign-up-link href=new_user_registration_path = t '.sign_up'
+        a.item.Site-MenuBar_sign-in-link href=new_user_session_path = t '.sign_in'

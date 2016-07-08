@@ -1,0 +1,230 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  user_messages:
+    carts_controller:
+      items_updated: Cart items updated.
+    cart:
+      items_controller:
+        cat_added_to_cart: "Added %{cat_name} to shopping cart."
+        cat_not_available: This cat is currently out of stock.
+        removed_items_from_cart: "Removed %{item} from the shopping cart."
+    checkouts_controller:
+      not_enough_stock: Some items in your cart are no longer in stock.
+      cannot_checkout_empty_cart: You can't check out an empty shopping cart.
+    checkout:
+      payments_controller:
+        card_required: You need to provide credit card details.
+      confirms_controller:
+        order_placed_successfully: Thank you for shopping with us! Your order will be dispatched soon.
+        card_rejected: Your credit card was rejected. Please try a different one or contact your bank.
+        empty_cart: You cannot check out an empty shopping cart.
+
+    admin:
+      cats_controller:
+        successfully_updated_cat: "%{cat_name} was updated."
+        cat_was_destroyed:  "%{cat_name} was vaporized!"
+        successfully_created_cat: "Added %{cat_name}."
+
+      stocks_controller:
+        stock_updated: Stock was updated.
+
+  # views
+  carts:
+    show:
+      change_quantities: Change Quantities
+    edit:
+      cancel: Cancel
+      update_cart: Update Cart
+  checkout:
+    addresses:
+      edit:
+        continue: Continue
+    payments:
+      edit:
+        use_existing_credit_card: Use a previous credit card
+        or: OR
+        use_new_credit_card: Use a new credit card
+        use_this_card: Use this card
+    confirms:
+      new:
+        shipping_address: Shipping Address
+        payment_method: Payment Method
+        finish_purchase: Finish Purchase
+
+  orders:
+    index:
+      show_all_orders: Show All Orders
+      shipping_to: Shipping to
+
+  admin:
+    cats:
+      edit:
+        edit_cat: Edit Cat
+        delete_cat: Had enough of this cat?
+      new:
+        add_new_cat: Add a New Cat
+
+    stocks:
+      index:
+        cat: Cat
+        stock: Stock
+        actions: Actions
+        update_stock: Update Stock
+      edit:
+        stock: Stock
+  # end of views
+
+  order_mailer:
+    new_order: 'Your new order (#%{order_id})'
+
+  components:
+    site:
+      menu_bar:
+        neko_shop: NEKO SHOP
+        sign_up: Sign up
+        sign_in: Log in
+
+        user_menu:
+          admin_area: Admin Area
+          view_orders: View Orders
+          logout: Logout
+
+        cart_counter:
+          item: item
+          in_cart: in cart
+          checkout: Checkout
+
+    shopfront:
+      cat_grid:
+        no_cats: "We're all outta cats, but we're parachuting them in right now!"
+
+      cat_card:
+        details: Details
+
+      species_filter:
+        all_species: All species
+
+      cat_page:
+        cat_sheet:
+          description: Description
+          placeholder_description: "(no description provided)"
+
+        add_to_cart_form:
+          add_to_cart: Add to Cart
+          out_of_stock: Out of Stock
+
+    cart:
+      items_table: &component_cart_items_table
+        cat: Cat
+        options: Options
+        quantity: Quantity
+        subtotal: Subtotal
+        unit_price: Price per cat
+        remove: Remove
+        are_you_sure_you_want_to_remove: "Are you sure you wish to remove %{items} from your shopping cart?"
+        no_items_in_cart_yet: "You don't have any cats in your shopping cart yet.<br>Visit the <a href='%{shopfront_link}'>shop</a> to check our magnificent feline selection!"
+      items_table_edit:
+        <<: *component_cart_items_table
+
+    checkout:
+      start_checkout_button:
+        checkout: Checkout
+
+      summary:
+        items_in_cart: Items in cart
+        shipping: Shipping
+        total: Total
+        shipping_costs_only_on_checkout: "Shipping costs are calculated only on checkout, after you specify a destination country."
+
+      account_prompts:
+        existing_user: Got account?
+        sign_in_to_use_profile_address: Sign in to use your profile's address.
+        sign_in: Sign In
+        new_user: New here?
+        sign_up_to_benefit: Sign up and benefit from numerous advantages!
+        sign_up: Create Account
+
+      address_form:
+        remember_this_address: Use this address in future purchases
+
+      steps:
+        shipping_address: Shipping Address
+        payment_details: Payment Details
+        confirm_order: Confirm Order
+
+      payment_method:
+        card_brand: Card brand
+        card_number: Card number
+        expiring_on: Expiring on
+
+      simple_cost_breakdown:
+        subtotal: Subtotal
+        shipping_cost: Shipping Cost
+        total: Total
+
+    orders:
+      order_status:
+        paid: Paid
+        cancelled: Cancelled
+        pending: Pending
+
+    admin:
+      cats:
+        cat_table:
+          actions: Actions
+          edit: Edit
+          add_new_cat: Add a new cat
+
+        cat_form:
+          cancel: Cancel
+          photos: Photos
+          delete_photo: Delete
+          add_photo: Add Photo
+
+          options_subform:
+            you_can_only_have_some_options: "You are allowed a maximum of %{max_options} options per cat."
+            add_variation: Add Variation
+            remove: Remove
+
+        delete_cat_button:
+          delete: "Vaporize %{cat_name}"
+          are_you_sure: "Do you really want to vaporize poor %{cat_name}?"
+
+      stocks:
+        stock_form:
+          variation: Variations
+          stock: Stock
+          cancel: Cancel
+
+          virtual_cat_decorator:
+            default_combination: (default)
+            out_of_stock: Out of Stock
+            low_stock: Low Stock
+
+      sidebar_nav:
+        dashboard: Dashboard
+        cats: Cats
+        stocks: Stocks
+
+
+

@@ -1,0 +1,16 @@
+.Checkout-SimpleCostBreakdown
+
+  .Checkout-SimpleCostBreakdown_line
+    = t('.subtotal') + ':'
+    .Checkout-SimpleCostBreakdown_value
+      = component.subtotal
+
+  .Checkout-SimpleCostBreakdown_line
+    = t('.shipping_cost') + ':'
+    .Checkout-SimpleCostBreakdown_value
+      = component.shipping_cost
+
+  .Checkout-SimpleCostBreakdown_line: b
+    = t('.total') + ':'
+    .Checkout-SimpleCostBreakdown_value: b
+      = component.total

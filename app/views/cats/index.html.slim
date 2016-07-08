@@ -1,0 +1,4 @@
+= render_component ::Components::Shopfront::CatGrid.new cats: @result.cats
+
+- content_for :sidebar
+  = render_component ::Components::Shopfront::SpeciesFilter.new context: self, species: @result.all_species, current: params[:species]

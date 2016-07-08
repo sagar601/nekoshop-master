@@ -1,0 +1,25 @@
+- load_stripe
+
+= render_component Components::Checkout::Steps.new active: 2
+
+.ui.two.column.very.relaxed.stackable.grid.Checkout-PaymentStepLayout
+  - if @result.checkout.has_payment_method?
+    .column
+      .ui.segment
+        h3 = t '.use_existing_credit_card'
+
+        = render_component Components::Checkout::PaymentMethod.new method: @result.checkout.payment_method, wrapped: false
+
+        = link_to t('.use_this_card'), checkout_payment_path, method: :patch, class: 'ui fluid teal button', id: 'use_old_card_button'
+
+    .ui.vertical.divider = t '.or'
+
+  .column
+    .ui.segment
+      h3 = t '.use_new_credit_card'
+
+      = react_component 'CreditCardForm', action: checkout_payment_path, method: :patch, rememberable: !@result.checkout.guest?
+
+- content_for :sidebar
+  = render_component Components::Checkout::Summary.new checkout: @result.checkout
+

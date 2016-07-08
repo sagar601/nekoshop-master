@@ -1,0 +1,25 @@
+table.ui.table.Admin-StocksTable
+  thead: tr
+    th = t '.cat'
+    th = t '.stock'
+    th = t '.actions'
+
+  tbody
+    - @result.stocks.each do |stock|
+      tr
+        td
+          img.ui.left.floated.mini.image src=stock.cat.headshot.src
+          = stock.cat.name
+        td
+          = stock.quantity
+        td
+          = link_to t('.update_stock'), edit_admin_stock_path(stock.cat)
+
+  tfoot
+    tr
+      th.right.aligned colspan=3
+        = render_component Components::Pager.new collection: @result.cats
+
+
+- content_for :sidebar
+  = render_component Components::Admin::SidebarNav.new context: self, active: :stocks

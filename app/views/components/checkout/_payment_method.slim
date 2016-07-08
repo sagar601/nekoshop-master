@@ -1,0 +1,12 @@
+.Checkout-PaymentMethod class=component.wrapper_classes
+  == component.title
+  .ui.list
+    .item
+      .right.floated.content = component.card_brand
+      .content = t('.card_brand') + ':'
+    .item
+      .right.floated.content = component.card_number
+      .content = t('.card_number') + ':'
+    .item
+      .right.floated.content = component.card_expiration_date
+      .content = t('.expiring_on') + ':'

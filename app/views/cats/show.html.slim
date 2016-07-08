@@ -1,0 +1,4 @@
+= render_component ::Components::Shopfront::CatPage::CatSheet.new cat: @result.cat
+
+- content_for :sidebar
+  = react_component 'PhotoRoll', photos: ::RollPhotos.new(@result.cat.photos).to_a

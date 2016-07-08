@@ -1,0 +1,8 @@
+= form_for component.new_item, as: 'item', url: cart_items_path, html: { class: 'ui form Shopfront-CatPage-AddToCartForm' } do |f|
+
+  = react_component 'Recombobulator', component.recombobulator_props
+
+  / FIXME below is a small crutch to keep the tests working while I figure out why none of the capybara js drivers work
+  - if Rails.env.test?
+    = hidden_field_tag 'item[virtual_cat_id]', component.cat.virtual_cats.first.id
+    = f.submit disabled: !component.cat.available?, id: 'add_to_cart_button'

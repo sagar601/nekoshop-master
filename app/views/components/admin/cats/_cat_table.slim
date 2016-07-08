@@ -1,0 +1,24 @@
+table.ui.celled.table.CatTable
+  thead: tr
+    th = Cat.human_attribute_name :name
+    th = Cat.human_attribute_name :species
+    th = Cat.human_attribute_name :price
+    th = t '.actions'
+
+  tbody
+    - component.cats.each do |cat|
+      tr
+        td
+          img.ui.left.floated.mini.image src=cat.headshot.src
+          = cat.name
+        td = cat.species
+        td = cat.price.format
+        td = link_to t('.edit'), edit_admin_cat_path(cat)
+
+  tfoot
+    tr
+      th.right.aligned colspan=4
+        a.ui.left.floated.teal.button href=new_admin_cat_path id='add_new_cat_button'
+          = t '.add_new_cat'
+
+        = render_component Components::Pager.new collection: @result.cats

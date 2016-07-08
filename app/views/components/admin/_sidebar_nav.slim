@@ -1,0 +1,5 @@
+.Admin-SidebarNav
+  nav.ui.vertical.menu
+    - component.items.each do |item|
+      a.item class=item.classes href=item.link
+        = item.name

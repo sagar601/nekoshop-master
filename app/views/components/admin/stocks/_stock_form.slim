@@ -1,0 +1,18 @@
+= form_for component.form, as: 'stock', url: component.url, method: component.method, html: { class: 'ui form' } do |f|
+  table.ui.table.Admin-VirtualCatStocks
+    thead: tr
+      th.ten.wide = t '.variation'
+      th.three.wide
+      th.three.wide = t '.stock'
+
+    tbody
+      = f.fields_for :virtual_cats do |vcf|
+        - row = component.wrap vcf.object.model
+
+        tr class=row.row_classes
+          td = row.combination
+          td.right.aligned = row.warning
+          td = vcf.number_field :stock, min: 0, step: 1
+
+  = f.submit class: 'ui teal button'
+  = link_to t('.cancel'), component.return_path, class: 'ui basic button'

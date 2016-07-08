@@ -1,0 +1,8 @@
+h1.ui.header = t '.edit_cat'
+= render_component Components::Admin::Cats::CatForm.new context: self, form: @result.form, action: admin_cat_path(@result.cat), method: :patch, return_path: admin_cats_path
+
+h3.ui.header = t '.delete_cat'
+= render_component Components::Admin::Cats::DeleteCatButton.new cat: @result.cat
+
+- content_for :sidebar
+  = render_component Components::Admin::SidebarNav.new context: self

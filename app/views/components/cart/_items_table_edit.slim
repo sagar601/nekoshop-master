@@ -1,0 +1,16 @@
+table.ui.table.Cart-ItemsTable
+  thead: tr
+    th.three.wide = t '.cat'
+    th.five.wide = t '.options'
+    th.four.wide
+    th.two.wide = t '.quantity'
+    th.two.wide = t '.unit_price'
+
+  tbody
+    - component.items.each do |item|
+      tr
+        td = item.name
+        td = item.options
+        == item.errors_cell
+        td = number_field_tag "items[#{item.id}][quantity]", item.quantity, min: 0, step: 1
+        td = "x #{item.unit_price}"

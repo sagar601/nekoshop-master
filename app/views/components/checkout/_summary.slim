@@ -1,0 +1,27 @@
+.Checkout-Summary (class=component.wrapper_classes)
+  .ui.list
+
+    .item
+      .right.floated.content = component.number_of_items
+      .content = t('.items_in_cart') + ':'
+
+    - if component.show_items?
+      .item
+        .content
+          .Checkout-Summary_item-summary.list
+            - component.items.each do |item|
+              .item
+                .right.floated.content = "× #{item.quantity}"
+                .content = item.name
+
+    .item
+      .right.floated.content
+        - if component.show_shipping_cost?
+          = component.shipping_cost
+        - else
+          i.tooltiped.fitted.help.circle.icon data-content=t('.shipping_costs_only_on_checkout')
+      .content = t('.shipping') + ':'
+
+    .item
+      .right.floated.content = component.total
+      .content = t('.total') + ':'

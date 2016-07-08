@@ -1,0 +1,13 @@
+h1 = Order.model_name.human.pluralize
+
+.ui.four.stackable.cards
+  - @result.orders.each do |order|
+    .card
+      .content
+        pre = order.summary
+        = render_component Components::Address.new address: order.address, title: (t('.shipping_to') + ':')
+      .extra.content.center.aligned
+        = render_component Components::Orders::OrderStatus.new order: order
+
+button.ui.basic.button = t '.show_all_orders'
+/ TODO implement the button above

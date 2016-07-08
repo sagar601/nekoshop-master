@@ -1,0 +1,9 @@
+= form_for @result.cart, as: 'cart', url: cart_path, html: { class: 'ui form' } do |form|
+
+  = render_component Components::Cart::ItemsTable.new context: self, cart: @result.cart, edit: true
+
+  .ui.one.column.grid
+    .right.aligned.column
+      = link_to t('.cancel'), :back, class: 'ui basic button'
+      = form.submit t('.update_cart'), class: 'ui teal button Cart-UpdateCartButton'
+

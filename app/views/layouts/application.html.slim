@@ -1,0 +1,30 @@
+doctype html
+html
+  head
+    title = content_for(:title) || 'Neko Shop — Best felines of the interwebs!'
+
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+
+  body
+    = render_component ::Components::Site::MenuBar.new user: current_or_guest_user
+
+    .ui.doubling.stackable.grid.container.RootGrid
+
+      - if content_for :sidebar
+
+        .four.wide.column
+          = content_for :sidebar
+        .twelve.wide.column
+          = render_component ::Components::Flash.new self
+          = yield
+
+      - else
+
+        .sixteen.wide.column
+          = render_component ::Components::Flash.new self
+          = yield
+
+
+    = content_for :javascripts

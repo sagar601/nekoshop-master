@@ -1,0 +1,3 @@
+- @result.cats.each do |cat|
+  .column
+    = render_component ::Components::Shopfront::CatCard.new context: self, cat: cat

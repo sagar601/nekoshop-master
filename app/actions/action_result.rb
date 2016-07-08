@@ -1,0 +1,3 @@
+class ActionResult < ClosedStruct
+
+end

@@ -1,0 +1,5 @@
+- if component.messages.any?
+  .Flash
+    - component.messages.each do |message|
+      .ui.message class=message.classes
+        = message.text

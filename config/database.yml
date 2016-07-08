@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 30
+  username: <%= ENV.fetch('DB_ENV_POSTGRES_USER')  %>
+  password: <%= ENV.fetch('DB_ENV_POSTGRES_PASSWORD') %>
+  host: db
+
+development:
+  <<: *default
+  database: nekoshop__dev
+
+test:
+  <<: *default
+  database: nekoshop__test
+
+production:
+  <<: *default
+  database: nekoshop__pro

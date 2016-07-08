@@ -1,0 +1,19 @@
+.Shopfront-CatGrid
+  .ui.doubling.stackable.three.column.grid data-infinite-scroll='cat_grid'
+
+    - if component.cats.empty?
+      .sixteen.wide.column
+        .ui.very.padded.center.aligned.segment.Shopfront-CatGrid_no-cats-message
+          h3.ui.grey.icon.header
+            i.settings.icon
+            .content = t '.no_cats'
+
+    - else
+      - component.cats.each do |cat|
+        .column
+          = render_component ::Components::Shopfront::CatCard.new context: self, cat: cat
+
+      - if component.paginate?
+        .row (data-infinite-scroll-exclude)
+          .sixteen.wide.center.aligned.column
+            = react_component 'InfiniteScroller', container: 'cat_grid', url: cats_path
